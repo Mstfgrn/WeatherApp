@@ -23,6 +23,7 @@
 		2BBCD0732798AAF8001125CA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 2BBCD0722798AAF8001125CA /* Alamofire */; };
 		2BBCD0752798ACE8001125CA /* WeatherDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBCD0742798ACE8001125CA /* WeatherDataResponse.swift */; };
 		2BBCD0772798AD46001125CA /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBCD0762798AD46001125CA /* WeatherViewModel.swift */; };
+		2BBCD0792798E6A1001125CA /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBCD0782798E6A1001125CA /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		2BBCD06F2798A39C001125CA /* WeatherServiceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceEndPoint.swift; sourceTree = "<group>"; };
 		2BBCD0742798ACE8001125CA /* WeatherDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataResponse.swift; sourceTree = "<group>"; };
 		2BBCD0762798AD46001125CA /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		2BBCD0782798E6A1001125CA /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBCD06F2798A39C001125CA /* WeatherServiceEndPoint.swift */,
+				2BBCD0782798E6A1001125CA /* APIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				2BBCD06527986EE0001125CA /* HomeViewModel.swift in Sources */,
 				2BBCD02127981F97001125CA /* HomeViewController.swift in Sources */,
 				2BBCD05F2798600A001125CA /* WeatherViewController.swift in Sources */,
+				2BBCD0792798E6A1001125CA /* APIService.swift in Sources */,
 				2BBCD0752798ACE8001125CA /* WeatherDataResponse.swift in Sources */,
 				2BBCD01D27981F97001125CA /* AppDelegate.swift in Sources */,
 				2BBCD01F27981F97001125CA /* SceneDelegate.swift in Sources */,

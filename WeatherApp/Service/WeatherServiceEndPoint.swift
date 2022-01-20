@@ -23,11 +23,19 @@ enum WeatherServiceEndPoint: GenericValueProtocol{
             return "exclude=\(exclude)&"
         case .api(let api):
             return "appid=\(api)"
+        case .units(let units):
+            return "units=\(units)&"
+        case .imageUrl(let image):
+            return "http://openweathermap.org/img/wn/\(image)@2x.png"
         }
+        
     }
     case base
     case latlong(Double,Double)
     case exclude(String)
+    case units(String)
     case api(String)
+    case imageUrl(String)
+    
 }
 

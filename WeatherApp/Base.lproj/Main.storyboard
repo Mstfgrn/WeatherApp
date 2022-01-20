@@ -79,6 +79,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7x4-Ca-sd5">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -96,18 +97,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S52-RS-neU">
-                                <rect key="frame" x="132" y="315" width="150.5" height="78"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="65"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="taE-MA-sqr">
+                                <rect key="frame" x="139.5" y="148" width="135" height="174"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İstanbul" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S52-RS-neU">
+                                        <rect key="frame" x="0.0" y="0.0" width="135" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="load" translatesAutoresizingMaskIntoConstraints="NO" id="57W-Et-4Oa">
+                                        <rect key="frame" x="0.0" y="48" width="135" height="78"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JeM-CM-wHe">
+                                        <rect key="frame" x="0.0" y="126" width="135" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mae-yd-OOZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="S52-RS-neU" firstAttribute="centerX" secondItem="5No-ba-nmB" secondAttribute="centerX" id="Dhr-bg-CBd"/>
-                            <constraint firstItem="S52-RS-neU" firstAttribute="top" secondItem="Mae-yd-OOZ" secondAttribute="top" constant="227" id="FoR-HP-4yL"/>
+                            <constraint firstItem="taE-MA-sqr" firstAttribute="centerX" secondItem="5No-ba-nmB" secondAttribute="centerX" id="Fxs-oL-rvm"/>
+                            <constraint firstItem="taE-MA-sqr" firstAttribute="top" secondItem="Mae-yd-OOZ" secondAttribute="top" constant="60" id="YZh-MC-G63"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IGT-vU-iOu"/>
@@ -121,6 +136,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="load" width="100" height="78"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

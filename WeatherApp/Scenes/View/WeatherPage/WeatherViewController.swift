@@ -6,15 +6,23 @@
 //
 
 import UIKit
-class WeatherViewController: BaseViewController<WeatherViewModel> {
- 
-    @IBOutlet weak var apiText: UILabel!
+import CoreLocation
 
+class WeatherViewController: BaseViewController<WeatherViewModel> {
+    
+    var locationManager = CLLocationManager()
+
+    @IBOutlet weak var apiText: UILabel!
+    var getApiKey: String?
+   
     var wviewModel = WeatherViewModel()
+    var currentLoc: CLLocation!
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
+    
+
     
    
 }
