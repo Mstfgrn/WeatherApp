@@ -25,6 +25,7 @@
 		2BBCD0772798AD46001125CA /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBCD0762798AD46001125CA /* WeatherViewModel.swift */; };
 		2BBCD0792798E6A1001125CA /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBCD0782798E6A1001125CA /* APIService.swift */; };
 		2BBCD07D27999EBF001125CA /* DataResponseInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBCD07C27999EBF001125CA /* DataResponseInfoProtocol.swift */; };
+		2BBFF5982799B9A000660CEA /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBFF5972799B9A000660CEA /* WeatherTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		2BBCD0762798AD46001125CA /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		2BBCD0782798E6A1001125CA /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		2BBCD07C27999EBF001125CA /* DataResponseInfoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataResponseInfoProtocol.swift; sourceTree = "<group>"; };
+		2BBFF5972799B9A000660CEA /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBCD05E2798600A001125CA /* WeatherViewController.swift */,
+				2BBFF5972799B9A000660CEA /* WeatherTableViewCell.swift */,
 			);
 			path = WeatherPage;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBFF5982799B9A000660CEA /* WeatherTableViewCell.swift in Sources */,
 				2BBCD06227986DC8001125CA /* BaseViewController.swift in Sources */,
 				2BBCD0772798AD46001125CA /* WeatherViewModel.swift in Sources */,
 				2BBCD0702798A39C001125CA /* WeatherServiceEndPoint.swift in Sources */,

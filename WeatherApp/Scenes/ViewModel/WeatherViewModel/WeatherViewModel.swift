@@ -12,7 +12,7 @@ import CoreLocation
 class WeatherViewModel {
     typealias urlEndPoint = WeatherServiceEndPoint
     var state: Bool = false
-    var responseArr: WeatherDataResponse!
+    var responseArr: [WeatherDataResponse.Daily]?
     /*func getWeatherData(lat: Double?, lon: Double?, unit: String, exclude: String, api:String){
         AF.request("\(urlEndPoint.base.value)\(urlEndPoint.latlong(lat!, lon!).value)\(urlEndPoint.exclude(exclude).value)\(urlEndPoint.units(unit).value)\(urlEndPoint.api(api).value)", method: .get).responseJSON { response in
             if let data = response.data{
@@ -40,7 +40,7 @@ class WeatherViewModel {
     }*/
     func getWeatherData(lat: Double?, lon: Double?, unit: String, exclude: String, api:String){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, MMM, d"
+        dateFormatter.dateFormat = "EEEE"
         CLGeocoder().geocodeAddressString("") { (placemarks, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -53,9 +53,9 @@ class WeatherViewModel {
                                    dateDecodingStrategy: .secondsSince1970) { (result: Result<WeatherDataResponse,APIService.APIError>) in
                     switch result {
                     case .success(let weatherDataResponse):
-                        self.responseArr = weatherDataResponse
-                        print(self.responseArr)
-                        print(weatherDataResponse.timezone ?? "")
+                        self.responseArr = weatherDataResponse.daily
+                        print(self.responseArr!)
+                        //print(weatherDataResponse.timezone ?? "")
                         for day in weatherDataResponse.daily {
                             
                             /*print(dateFormatter.string(from: day.dt))
@@ -87,11 +87,11 @@ extension WeatherViewModel: DataResponseInfoProtocol{
     }
     
     func askNumberOfItem(in section: Int) -> Int {
-        return responseArr.daily.count
+        return (responseArr?.count)!
     }
     
     func askData(at index: Int) -> WeatherDataResponse.Daily? {
-        return responseArr.daily[index]
+        return responseArr![index]
     }
     
     func stateInfo() -> Bool {
