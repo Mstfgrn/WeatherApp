@@ -10,7 +10,7 @@ import Foundation
 protocol DataResponseInfoProtocol{
     func askNumberOfSection() -> Int
     func askNumberOfItem(in section: Int) -> Int
-    func askData(at index: Int) -> WeatherDataResponse.Daily?
+    func askData(at index: Int) -> Daily?
     func stateInfo() -> Bool
     func selectedItem(at index: Int)
 }

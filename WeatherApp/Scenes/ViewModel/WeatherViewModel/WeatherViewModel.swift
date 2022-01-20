@@ -8,28 +8,26 @@
 import Foundation
 import Alamofire
 import CoreLocation
+import SwiftUI
 
-class WeatherViewModel {
+class WeatherViewModel{
     typealias urlEndPoint = WeatherServiceEndPoint
     var state: Bool = false
-    var responseArr: [WeatherDataResponse.Daily]?
-    /*func getWeatherData(lat: Double?, lon: Double?, unit: String, exclude: String, api:String){
+    
+    var responseArr = [Daily]()
+    var data2: Dailyy = []
+    func getWeatherData(lat: Double?, lon: Double?, unit: String, exclude: String, api:String){
         AF.request("\(urlEndPoint.base.value)\(urlEndPoint.latlong(lat!, lon!).value)\(urlEndPoint.exclude(exclude).value)\(urlEndPoint.units(unit).value)\(urlEndPoint.api(api).value)", method: .get).responseJSON { response in
             if let data = response.data{
                 do{
+                    print(data)
                     let backData =  try JSONDecoder().decode(WeatherDataResponse.self, from: data)
                     if let receiveData = backData.daily{
-                        for day in receiveData {
-                            
-                            print(dateFormatter.string(from: day.dt))
-                            print("   Max: ", day.temp.max)
-                            print("   Min: ", day.temp.min)
-                            print("   Humidity: ", day.humidity)
-                            print("   Description: ", day.weather[0].description)
-                            print("   Clouds: ", day.clouds)
-                            print("   pop: ", day.pop)
-                            print("   IconURL: ", day.weather[0].weatherIconURL)
-                        }
+                        self.data2 = receiveData
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ResultData"), object: nil, userInfo: ["arr": self.data2])
+                        /*for day in self.responseArr {
+                            print(day.dt!)
+                        }*/
                     }
                 }catch{
                     print(error.localizedDescription)
@@ -37,8 +35,8 @@ class WeatherViewModel {
             }
         }
         //print("\(urlEndPoint.base.value)\(urlEndPoint.latlong(lat!, lon!).value)\(urlEndPoint.exclude(exclude).value)\(urlEndPoint.units(unit).value)\(urlEndPoint.api(api).value)" )
-    }*/
-    func getWeatherData(lat: Double?, lon: Double?, unit: String, exclude: String, api:String){
+    }
+   /* func getWeatherData(lat: Double?, lon: Double?, unit: String, exclude: String, api:String){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE"
         CLGeocoder().geocodeAddressString("") { (placemarks, error) in
@@ -78,25 +76,24 @@ class WeatherViewModel {
                 }
             }
         }
-    }
+    }*/
 
 }
-extension WeatherViewModel: DataResponseInfoProtocol{
+/*extension WeatherViewModel: DataResponseInfoProtocol{
     func askNumberOfSection() -> Int {
         return 0
     }
     
     func askNumberOfItem(in section: Int) -> Int {
-        return (responseArr?.count)!
+        return data2.count
     }
     
-    func askData(at index: Int) -> WeatherDataResponse.Daily? {
-        return responseArr![index]
+    func askData(at index: Int) -> Daily? {
+        return data2[index]
     }
     
     func stateInfo() -> Bool {
         return state
     }
     
-    
-}
+}*/

@@ -23,11 +23,11 @@ class WeatherTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func configure(data: WeatherDataResponse.Daily){
+    func configure(data: Daily){
         
-        daysName.text = convertDate(date: data.dt)
-        weatherMax.text = "\(data.temp.max)°"
-        weatherMin.text = "\(data.temp.min)°"
+        daysName.text = "Frrrr"
+        weatherMax.text = "\(data.temp?.max)°"
+        weatherMin.text = "\(data.temp?.min)°"
     }
     
     func convertDate(date: Date) -> String {
