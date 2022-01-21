@@ -11,13 +11,12 @@ import CoreLocation
 class WeatherViewController: BaseViewController<WeatherViewModel> {
     
     //var delegate: DataResponseInfoProtocol?
-    var locationManager = CLLocationManager()
-    var currentLoc: CLLocation!
+    
     var wviewModel = WeatherViewModel()
     var getApiKey: String?
     var resultgetdata: Dailyy = []
-    var lat: Double = 41.015137
-    var lon: Double = 28.979530
+    var lat: Double!
+    var lon: Double!
 
     
     @IBOutlet weak var imageMain: UIImageView!
@@ -30,26 +29,15 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
         tableView.delegate = self
         tableView.dataSource = self
         //self.delegate = viewModel
-        //permissionFunc()
         findLocation()
-        NotificationCenter.default.addObserver(self, selector: #selector(getData(data:)), name: NSNotification.Name.init(rawValue: "ResultData"), object: nil)
-        
     }
     override func viewWillAppear(_ animated: Bool) {
-        locationManager.requestWhenInUseAuthorization()
-        if(locationManager.authorizationStatus == .authorizedWhenInUse ||
-           locationManager.authorizationStatus == .authorizedAlways) {
-            
-            currentLoc = locationManager.location
-            lat = currentLoc.coordinate.latitude
-            lon = currentLoc.coordinate.longitude
-            if let receivedText: String = getApiKey {
-                
-                wviewModel.getWeatherData(lat: lat, lon: lon, unit: "metric", exclude: "current,minutely,hourly,alerts", api: receivedText)
-            }
-            
-        }
         
+        if let receivedText: String = getApiKey, let latt: Double = lat, let lonn: Double = lon{
+            
+            wviewModel.getWeatherData(lat: latt, lon: lonn, unit: "metric", exclude: "current,minutely,hourly,alerts", api: receivedText)
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(getData(data:)), name: NSNotification.Name.init(rawValue: "ResultData"), object: nil)
     }
     
     @objc func getData(data: Notification){
@@ -58,38 +46,27 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
             self.resultgetdata = result
             imageMain.load(url: URL(string: WeatherServiceEndPoint.imageUrl(resultgetdata[0].weather![0].icon!).value)!)
             currentDegrees.text = "\(String(describing: resultgetdata[0].temp!.day!))°"
-            DispatchQueue.main.async {
+            
                 self.tableView.reloadData()
-            }
+            
         }
     }
     
     public func findLocation(){
         let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: lat, longitude: lon) // <- New York
-        
+        let location = CLLocation(latitude: self.lat, longitude: self.lon) // <- New York
+        print(self.lat!)
+        print(self.lon!)
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, _) -> Void in
 
             placemarks?.forEach { (placemark) in
 
                 if let city = placemark.locality {
-                    print(city)
                     self.apiText.text = city
-                } // Prints "New York"
+                    print(city)
+                } // Prints San Francisco Because my emulator location is that
             }
         })
-    }
-    
-    public func permissionFunc(){
-        locationManager.requestWhenInUseAuthorization()
-        
-        if(locationManager.authorizationStatus == .authorizedWhenInUse ||
-           locationManager.authorizationStatus == .authorizedAlways) {
-            
-            currentLoc = locationManager.location
-            lat = currentLoc.coordinate.latitude
-            lon = currentLoc.coordinate.longitude
-        }
     }
 }
 extension WeatherViewController : UITableViewDelegate,UITableViewDataSource {
