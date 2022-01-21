@@ -10,14 +10,18 @@ import CoreLocation
 
 class WeatherViewController: BaseViewController<WeatherViewModel> {
     
-    
+    //var delegate: DataResponseInfoProtocol?
     var locationManager = CLLocationManager()
     var currentLoc: CLLocation!
-    //var delegate: DataResponseInfoProtocol?
     var wviewModel = WeatherViewModel()
     var getApiKey: String?
     var resultgetdata: Dailyy = []
+    var lat: Double = 41.015137
+    var lon: Double = 28.979530
+
     
+    @IBOutlet weak var imageMain: UIImageView!
+    @IBOutlet weak var currentDegrees: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var apiText: UILabel!
    
@@ -26,36 +30,65 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
         tableView.delegate = self
         tableView.dataSource = self
         //self.delegate = viewModel
+        //permissionFunc()
+        findLocation()
         NotificationCenter.default.addObserver(self, selector: #selector(getData(data:)), name: NSNotification.Name.init(rawValue: "ResultData"), object: nil)
-        DispatchQueue.main.async {
-            self.permissionFunc()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        locationManager.requestWhenInUseAuthorization()
+        if(locationManager.authorizationStatus == .authorizedWhenInUse ||
+           locationManager.authorizationStatus == .authorizedAlways) {
+            
+            currentLoc = locationManager.location
+            lat = currentLoc.coordinate.latitude
+            lon = currentLoc.coordinate.longitude
+            if let receivedText: String = getApiKey {
+                
+                wviewModel.getWeatherData(lat: lat, lon: lon, unit: "metric", exclude: "current,minutely,hourly,alerts", api: receivedText)
+            }
+            
         }
-        if let receivedText: String = getApiKey {
-            //apiText.text = receivedText
-            //wviewModel.getWeatherData(lat: 0.0 , lon: 0.0, unit: "metric", exclude: "hourly,daily", api: receivedText)
-            wviewModel.getWeatherData(lat: 41.015137, lon: 28.979530, unit: "metric", exclude: "current,minutely,hourly,alerts", api: receivedText)
-        }
+        
     }
     
     @objc func getData(data: Notification){
         if let data = data.userInfo{
             let result = data["arr"] as! [Daily]
             self.resultgetdata = result
+            imageMain.load(url: URL(string: WeatherServiceEndPoint.imageUrl(resultgetdata[0].weather![0].icon!).value)!)
+            currentDegrees.text = "\(String(describing: resultgetdata[0].temp!.day!))°"
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
+    
+    public func findLocation(){
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: lat, longitude: lon) // <- New York
+        
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, _) -> Void in
 
-    func permissionFunc(){
+            placemarks?.forEach { (placemark) in
+
+                if let city = placemark.locality {
+                    print(city)
+                    self.apiText.text = city
+                } // Prints "New York"
+            }
+        })
+    }
+    
+    public func permissionFunc(){
         locationManager.requestWhenInUseAuthorization()
         
-        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-           CLLocationManager.authorizationStatus() == .authorizedAlways) {
+        if(locationManager.authorizationStatus == .authorizedWhenInUse ||
+           locationManager.authorizationStatus == .authorizedAlways) {
             
             currentLoc = locationManager.location
-            print(currentLoc.coordinate.latitude)
-            print(currentLoc.coordinate.longitude)
+            lat = currentLoc.coordinate.latitude
+            lon = currentLoc.coordinate.longitude
         }
     }
 }
@@ -71,11 +104,7 @@ extension WeatherViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = self.resultgetdata[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as! WeatherTableViewCell
-        //print(data)
-        //cell.daysName.text = "\(data.dt!)"
-        //cell.configure(data: resultgetdata)
-        //cell.weatherMax.text = "istanbul"
-        //cell.weatherMin.text = "1"
+        
         cell.configure(data: data)
         return cell
     }

@@ -100,7 +100,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="taE-MA-sqr">
                                 <rect key="frame" x="139.5" y="148" width="135" height="174"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İstanbul" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S52-RS-neU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="İstanbul" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S52-RS-neU">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                         <nil key="textColor"/>
@@ -129,42 +129,43 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="riday" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-Wf-dym">
-                                                    <rect key="frame" x="45" y="18" width="56.5" height="29"/>
+                                                    <rect key="frame" x="35" y="18" width="56.5" height="29"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="min" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSg-LM-XIa">
-                                                    <rect key="frame" x="370" y="23" width="28" height="20.5"/>
+                                                    <rect key="frame" x="366" y="23" width="28" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="load" translatesAutoresizingMaskIntoConstraints="NO" id="viu-oa-kFt">
-                                                    <rect key="frame" x="210" y="0.0" width="100" height="65"/>
+                                                    <rect key="frame" x="200" y="0.0" width="100" height="65"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="max" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RC1-fK-sLu">
-                                                    <rect key="frame" x="315" y="23" width="32" height="20.5"/>
+                                                    <rect key="frame" x="305" y="23" width="32" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="RC1-fK-sLu" secondAttribute="trailing" constant="47" id="09U-Qp-apA"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="RC1-fK-sLu" secondAttribute="trailing" constant="57" id="09U-Qp-apA"/>
                                                 <constraint firstAttribute="bottom" secondItem="viu-oa-kFt" secondAttribute="bottom" id="2Zr-xE-bUS"/>
                                                 <constraint firstItem="Mds-Wf-dym" firstAttribute="top" secondItem="a1U-fs-5Op" secondAttribute="topMargin" constant="7" id="30L-sp-uiT"/>
-                                                <constraint firstItem="Mds-Wf-dym" firstAttribute="leading" secondItem="a1U-fs-5Op" secondAttribute="leadingMargin" constant="25" id="A71-CA-D7O"/>
+                                                <constraint firstItem="Mds-Wf-dym" firstAttribute="leading" secondItem="a1U-fs-5Op" secondAttribute="leadingMargin" constant="15" id="A71-CA-D7O"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Mds-Wf-dym" secondAttribute="bottom" constant="7" id="G0g-fd-OhG"/>
                                                 <constraint firstItem="LSg-LM-XIa" firstAttribute="top" secondItem="a1U-fs-5Op" secondAttribute="top" constant="23" id="GZS-39-4ut"/>
                                                 <constraint firstItem="viu-oa-kFt" firstAttribute="top" secondItem="a1U-fs-5Op" secondAttribute="top" id="Ppb-rZ-XLo"/>
                                                 <constraint firstItem="RC1-fK-sLu" firstAttribute="top" secondItem="a1U-fs-5Op" secondAttribute="topMargin" constant="12" id="RPo-qe-p2G"/>
                                                 <constraint firstItem="RC1-fK-sLu" firstAttribute="leading" secondItem="viu-oa-kFt" secondAttribute="trailing" constant="5" id="ac3-sb-e4e"/>
-                                                <constraint firstAttribute="trailing" secondItem="LSg-LM-XIa" secondAttribute="trailing" constant="16" id="xJ1-ew-WeR"/>
+                                                <constraint firstAttribute="trailing" secondItem="LSg-LM-XIa" secondAttribute="trailing" constant="20" id="xJ1-ew-WeR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="daysName" destination="Mds-Wf-dym" id="iez-Kh-VlP"/>
+                                            <outlet property="imageWeather" destination="viu-oa-kFt" id="qQt-iX-nuk"/>
                                             <outlet property="weatherMax" destination="RC1-fK-sLu" id="GMz-cf-Bov"/>
                                             <outlet property="weatherMin" destination="LSg-LM-XIa" id="jVN-WH-5Q0"/>
                                         </connections>
@@ -186,6 +187,8 @@
                     <navigationItem key="navigationItem" id="IGT-vU-iOu"/>
                     <connections>
                         <outlet property="apiText" destination="S52-RS-neU" id="AwR-R9-hzv"/>
+                        <outlet property="currentDegrees" destination="JeM-CM-wHe" id="hF8-LT-Sdc"/>
+                        <outlet property="imageMain" destination="57W-Et-4Oa" id="0bW-fG-VdW"/>
                         <outlet property="tableView" destination="yrf-LX-AkJ" id="xUr-0h-KcM"/>
                     </connections>
                 </viewController>
