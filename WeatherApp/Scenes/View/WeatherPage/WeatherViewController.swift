@@ -13,10 +13,10 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
     
     var locationManager = CLLocationManager()
     var currentLoc: CLLocation!
+    //var delegate: DataResponseInfoProtocol?
     var wviewModel = WeatherViewModel()
-    var delegate : DataResponseInfoProtocol?
     var getApiKey: String?
-    var resultgetdata = [Daily]()
+    var resultgetdata: Dailyy = []
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var apiText: UILabel!
@@ -25,28 +25,24 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        //self.delegate = wviewModel
+        //self.delegate = viewModel
         NotificationCenter.default.addObserver(self, selector: #selector(getData(data:)), name: NSNotification.Name.init(rawValue: "ResultData"), object: nil)
         DispatchQueue.main.async {
             self.permissionFunc()
-            self.tableView.reloadData()
         }
-        
         if let receivedText: String = getApiKey {
             //apiText.text = receivedText
             //wviewModel.getWeatherData(lat: 0.0 , lon: 0.0, unit: "metric", exclude: "hourly,daily", api: receivedText)
             wviewModel.getWeatherData(lat: 41.015137, lon: 28.979530, unit: "metric", exclude: "current,minutely,hourly,alerts", api: receivedText)
         }
     }
+    
     @objc func getData(data: Notification){
         if let data = data.userInfo{
             let result = data["arr"] as! [Daily]
             self.resultgetdata = result
-            
-            for day in resultgetdata {
-                print("   Max: ", day.temp!.max)
-                print("   Min: ", day.temp!.min)
-               // print("   IconURL: ", day.weather[0].weatherIconURL)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }
@@ -64,21 +60,23 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
     }
 }
 extension WeatherViewController : UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        //return delegate?.askNumberOfItem(in: section) ?? 1
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //return delegate?.askNumberOfSection() ?? 0
+        return 1
     }
-    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return delegate?.askNumberOfItem(in: section) ?? 5
+        return self.resultgetdata.count
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let sepet = resultgetdata[indexPath.row]
-        //guard let resultData = delegate?.askData(at: indexPath.row) else{return UITableViewCell()}
+        let data = self.resultgetdata[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as! WeatherTableViewCell
-        
-        //cell.daysName.text = "\(resultData.dt)"
+        //print(data)
+        //cell.daysName.text = "\(data.dt!)"
         //cell.configure(data: resultgetdata)
         //cell.weatherMax.text = "istanbul"
         //cell.weatherMin.text = "1"
-        //cell.configure(data: sepet)
+        cell.configure(data: data)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

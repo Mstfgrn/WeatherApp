@@ -25,14 +25,22 @@ class WeatherTableViewCell: UITableViewCell {
     }
     func configure(data: Daily){
         
-        daysName.text = "Frrrr"
-        weatherMax.text = "\(data.temp?.max)°"
-        weatherMin.text = "\(data.temp?.min)°"
+        daysName.text = "\(convertDate(date: Double(data.dt!)))"
+        print(daysName.text)
+        weatherMax.text = "\(data.temp!.max)°"
+        weatherMin.text = "\(data.temp!.min)°"
     }
     
-    func convertDate(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        return dateFormatter.string(from: date)
+    func convertDate(date: Double) -> String {
+        var resultTime = ""
+        if let timeResult = (date as? Double) {
+            let date = Date(timeIntervalSince1970: timeResult)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE"
+            let localDate = dateFormatter.string(from: date)
+            resultTime = localDate
+        }
+        return resultTime
     }
 
 }

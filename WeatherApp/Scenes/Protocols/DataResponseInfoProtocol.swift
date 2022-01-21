@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DataResponseInfoProtocol{
+protocol DataResponseInfoProtocol: AnyObject{
     func askNumberOfSection() -> Int
     func askNumberOfItem(in section: Int) -> Int
     func askData(at index: Int) -> Daily?

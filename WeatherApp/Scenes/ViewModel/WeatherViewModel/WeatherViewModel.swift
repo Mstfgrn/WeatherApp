@@ -20,21 +20,17 @@ class WeatherViewModel{
         AF.request("\(urlEndPoint.base.value)\(urlEndPoint.latlong(lat!, lon!).value)\(urlEndPoint.exclude(exclude).value)\(urlEndPoint.units(unit).value)\(urlEndPoint.api(api).value)", method: .get).responseJSON { response in
             if let data = response.data{
                 do{
-                    print(data)
                     let backData =  try JSONDecoder().decode(WeatherDataResponse.self, from: data)
                     if let receiveData = backData.daily{
                         self.data2 = receiveData
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ResultData"), object: nil, userInfo: ["arr": self.data2])
-                        /*for day in self.responseArr {
-                            print(day.dt!)
-                        }*/
+        
                     }
                 }catch{
                     print(error.localizedDescription)
                 }
             }
         }
-        //print("\(urlEndPoint.base.value)\(urlEndPoint.latlong(lat!, lon!).value)\(urlEndPoint.exclude(exclude).value)\(urlEndPoint.units(unit).value)\(urlEndPoint.api(api).value)" )
     }
    /* func getWeatherData(lat: Double?, lon: Double?, unit: String, exclude: String, api:String){
         let dateFormatter = DateFormatter()
@@ -96,4 +92,6 @@ class WeatherViewModel{
         return state
     }
     
-}*/
+}
+*/
+
