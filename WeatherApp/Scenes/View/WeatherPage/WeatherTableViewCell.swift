@@ -27,8 +27,9 @@ class WeatherTableViewCell: UITableViewCell {
         
         daysName.text = "\(convertDate(date: Double(data.dt!)))"
         print(daysName.text)
-        weatherMax.text = "\(data.temp!.max)°"
-        weatherMin.text = "\(data.temp!.min)°"
+        weatherMax.text = "\(data.temp!.max!)°"
+        weatherMin.text = "\(data.temp!.min!)°"
+        
     }
     
     func convertDate(date: Double) -> String {
