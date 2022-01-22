@@ -55,8 +55,7 @@ class WeatherViewController: BaseViewController<WeatherViewModel> {
     public func findLocation(){
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: self.lat, longitude: self.lon) // <- New York
-        print(self.lat!)
-        print(self.lon!)
+       
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, _) -> Void in
 
             placemarks?.forEach { (placemark) in

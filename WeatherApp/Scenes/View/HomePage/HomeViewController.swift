@@ -39,8 +39,6 @@ class HomeViewController: UIViewController {
                 weatherVC.getApiKey = text
                 weatherVC.lat = lat
                 weatherVC.lon = lon
-                print(lat)
-                print(lon)
                 
             }
         }
