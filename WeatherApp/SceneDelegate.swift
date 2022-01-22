@@ -46,6 +46,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        print("url \(url)")
+        print("url host :\(url.host!)")
+        print("url path :\(url.path)")
+        
+        
+        let urlPath : String = (url.path as String?)!
+        let urlHost : String = (url.host as String?)!
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if(urlHost != "apikey=")
+        {
+            print("Host is not correct")
+            return false
+        }
+        
+        if(urlPath == "8ddadecc7ae4f56fee73b2b405a63659"){
+            let homePage: HomeViewController = mainStoryboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+            
+            self.window?.rootViewController = homePage
+        }
+        self.window?.makeKeyAndVisible()
+        return true
+    }
+
 
 
 }
